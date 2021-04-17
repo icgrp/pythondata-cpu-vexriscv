@@ -11,58 +11,17 @@ object VexRiscvStream extends App {
   def cpuOut() : VexRiscv = {
     val config = VexRiscvConfig(
       plugins = List(
-        new IBusCachedPlugin(
-            resetVector = 0x00000000l,
-            relaxedPcCalculation = false,
+        new IBusSimplePlugin(
+            resetVector = null,
             prediction = STATIC,
-            compressedGen = false,
-            config = InstructionCacheConfig(
-              cacheSize = 4096,
-              bytePerLine = 32,
-              wayCount = 1,
-              addressWidth = 32,
-              cpuDataWidth = 32,
-              memDataWidth = 32,
-              catchIllegalAccess = true,
-              catchAccessFault = true,
-              asyncTagMemory = false,
-              twoCycleRam = false,
-              twoCycleCache = false
-            )
+            cmdForkOnSecondStage = false,
+            cmdForkPersistence = false,
+            compressedGen = false
           ),
-        new DBusCachedPlugin(
-            dBusCmdMasterPipe = true,
-            dBusCmdSlavePipe = true,
-            dBusRspSlavePipe = false,
-            relaxedMemoryTranslationRegister = false,
-            config = new DataCacheConfig(
-              cacheSize = 4096,
-              bytePerLine = 32,
-              wayCount = 1,
-              addressWidth = 32,
-              cpuDataWidth = 32,
-              memDataWidth = 32,
-              catchAccessError = true,
-              catchIllegal = true,
-              catchUnaligned = true,
-              withLrSc = false,
-              withAmo = false,
-              earlyWaysHits = true
-            ),
-            csrInfo = true
+        new DBusSimplePlugin(
+            catchAddressMisaligned = true,
+            catchAccessFault = true
           ),
-        // new IBusSimplePlugin(
-        //   resetVector = 0x80000000l,
-        //   cmdForkOnSecondStage = false,
-        //   cmdForkPersistence = false,
-        //   prediction = STATIC,
-        //   catchAccessFault = false,
-        //   compressedGen = false
-        // ),
-        // new DBusSimplePlugin(
-        //   catchAddressMisaligned = false,
-        //   catchAccessFault = false
-        // ),
         new StaticMemoryTranslatorPlugin(
           ioRange      = _.msb
         ),

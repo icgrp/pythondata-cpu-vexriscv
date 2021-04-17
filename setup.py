@@ -24,11 +24,11 @@ Python module containing verilog files for VexRISCV cpu.""",
     zip_safe=False,
     packages=setuptools.find_packages(),
     package_data={
-    	'cpu_vexriscv_stream': ['cpu_vexriscv_stream/verilog/**'],
+        'pythondata_cpu_vexriscv_stream': ['pythondata_cpu_vexriscv_stream/verilog/**'],
     },
     include_package_data=True,
     project_urls={
         "Bug Tracker": "https://github.com/litex-hub/pythondata-cpu-vexriscv/issues",
-        "Source Code": "https://github.com/litex-hub/pythondata-cpu-vexriscv",
+        "Source Code": "https://github.com/icgrp/pythondata-cpu-vexriscv-stream",
     },
 )
