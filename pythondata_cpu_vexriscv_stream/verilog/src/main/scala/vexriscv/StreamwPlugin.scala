@@ -3,7 +3,6 @@ package vexriscv
 import spinal.core._
 import spinal.lib._
 import vexriscv.plugin.Plugin
-import vexriscv.{Stageable, DecoderService, VexRiscv, AXIStream32}
 // import axiStream32._
 
 class StreamwPlugin(streamCount: Int) extends Plugin[VexRiscv]{
